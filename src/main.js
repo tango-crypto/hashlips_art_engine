@@ -166,6 +166,21 @@ const addMetadata = (_dna, _edition) => {
         creators: solanaMetadata.creators,
       },
     };
+  } else if (network == NETWORK.cardano) {
+    tempMetadata = {
+      //Added metadata for cardano
+      name: tempMetadata.name,
+      asset_name: `${namePrefix}#${_edition}`,
+      description: tempMetadata.description,
+      //Added metadata for cardano
+      media_type: "image/png",
+      image: `${baseUri}/${_edition}.png`,
+      edition: _edition,
+      //Added metadata for solana
+      ...extraMetadata,
+      // custom_attributes: tempMetadata.attributes.reduce((dic, cur) => ({...dic, [cur.trait_type]: cur.value}), {}),
+      attributes: tempMetadata.attributes,
+    }
   }
   metadataList.push(tempMetadata);
   attributesList = [];
